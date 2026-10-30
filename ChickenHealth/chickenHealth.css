@@ -1,0 +1,153 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #eee;
+  margin: 0;
+}
+
+nav {
+  margin-top: 0;
+  padding-top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100dvw;
+  height: 4rem;
+  background-color: #ababab;
+
+  font-size: 1.4rem;
+}
+
+.linkHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 3rem;
+}
+
+.linkHolder:hover {
+  width: 9rem;
+  height: 3rem;
+  background-color: rgba(120, 120, 120, 0.3);
+  border-radius: 7px;
+  transition: 50ms ease-in;
+}
+
+.linkHolder:not(:hover) {
+  transition: 50ms ease-in;
+}
+
+a {
+  color: #111;
+  text-decoration-line: underline;
+  text-underline-offset: 4.5px;
+  line-height: 2.8rem;
+  text-align: center;
+  width: 10rem;
+  height: 3rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.inputLevel {
+  margin-top: 2.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputLevel p {
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
+.inputLevel input {
+  text-align: center;
+  font-size: 1.3rem;
+
+  height: 2.5rem;
+  width: 13rem;
+
+  border: 2.5px solid #666;
+  border-radius: 10px;
+  outline: unset;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.btn {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+#EnterBtn {
+  width: 8.4rem;
+  height: 3rem;
+
+  background: linear-gradient(140deg, #a2f229, #81db21);
+  border: 0px;
+  border-radius: 5px;
+
+  font-size: 1.5rem;
+  color: #222;
+
+  box-shadow: 3.5px 3.5px 8px rgba(93, 191, 14, 0.7);
+}
+
+#EnterBtn:hover {
+  box-shadow: 3.5px 3.5px 6.5px rgba(93, 191, 14, 0.7);
+  transition: 0.1s;
+}
+
+#EnterBtn:active {
+  box-shadow: 3.5px 3.5px 2px rgba(93, 191, 14, 0.7);
+  width: 8.3rem;
+  height: 3rem;
+  transition: 0.1s;
+}
+
+#results {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-size: 1.5rem;
+  visibility: hidden;
+}
+
+#results p {
+  line-height: 1.6rem;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2.35rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}

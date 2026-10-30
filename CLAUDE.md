@@ -23,19 +23,20 @@ Two hosts serve this repo, from **different branches** on purpose:
 
 ### Routing (`vercel.json`)
 
-- `/` **redirects** (temporary/307) to `/eastereggs` — since there's only one tool,
-  the root opens it directly instead of the home page.
-- `/eastereggs` **rewrites** to `/BE-Allocation/allocateBE.html` — clean URL, the file
-  path stays hidden. Because of this rewrite, `allocateBE.html` links its CSS/JS with
-  **absolute** paths (`/BE-Allocation/...`), not relative — keep them absolute or they
-  404 under `/eastereggs`.
-- The home page still exists and is reachable at `/index.html`. The `/` → `/eastereggs`
-  redirect exists only because there's currently one tool.
+- `/` serves the home hub (`index.html`) — a card per tool. (There used to be a
+  `/` → `/eastereggs` redirect while there was only one tool; it was removed when
+  Chicken Health was added.)
+- Each tool gets a clean URL via a **rewrite**, so the file path stays hidden:
+  - `/eastereggs` → `/BE-Allocation/allocateBE.html`
+  - `/health` → `/ChickenHealth/chickenHealth.html`
+- Because of these rewrites, tool pages link their CSS/JS with **absolute** paths
+  (`/BE-Allocation/...`, `/ChickenHealth/...`), not relative — keep them absolute or
+  they 404 under the clean URL.
 
-> **⚠️ When adding a new tool to this site: STOP and ask the user whether to remove the
-> `/` → `/eastereggs` redirect in `vercel.json`, so the root (`efstools.vercel.app`)
-> goes back to showing the home hub instead of jumping straight into the egg tool. Do
-> not change or keep the redirect silently — confirm with the user first.**
+> **When adding a new tool:** give it its own folder, a clean-URL rewrite in
+> `vercel.json`, and a card in `index.html` (copy an existing `.card` and give it its
+> own `border-top-color` in `indexStyles.css`). Tool pages copy the BE Allocation look
+> (gray nav with Home link, centered heading, bordered inputs, green Enter button).
 
 ## Git / remote
 
@@ -50,10 +51,15 @@ Two hosts serve this repo, from **different branches** on purpose:
 Each page has its **own** stylesheet (no shared stylesheet — a `redesign/site-ui` PR
 that introduced one was rejected and discarded).
 
-- `index.html` — home page. Currently a simple heading + link list. Styled by
-  `indexStyles.css`.
+- `index.html` — home hub: heading + one card per tool. Styled by `indexStyles.css`.
+  Cards link to the clean URLs (`/eastereggs`, `/health`).
 - `BE-Allocation/` — Black Egg Allocation calculator (`allocateBE.html` + `.js` +
   `allocateBE.css`). Computes optimal Easter Egg setup from a Black Egg total.
+- `ChickenHealth/` — Chicken Health at Level (`chickenHealth.html` + `.js` + `.css`).
+  Full HP of a non-boss chicken across all four wiki brackets (1–140, 141–500,
+  501–200,000 product form, 200,001+). Computed in log10 space so levels whose HP
+  exceeds ~1e308 still work; output uses the same `X.XXeN` format as BE Allocation.
+  Level input accepts plain integers plus `k`/`M` suffixes and e-notation.
 - `MaxLevel/` — an in-progress Max Level calc (`maxLevel.html` + `.js` + `.css`). Not
   linked from home yet; the JS bottom section is scratch/experimental.
 
